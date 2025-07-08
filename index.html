@@ -1,1 +1,91 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heroes of the Storm XP Analysis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f8f9fa;
+            color: #222;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 32px 40px 40px 40px;
+        }
+        h1 {
+            color: #2b4a6f;
+            margin-top: 0;
+        }
+        h2 {
+            color: #3a6ea5;
+            margin-bottom: 0.5em;
+        }
+        .visualization {
+            text-align: center;
+            margin: 32px 0;
+        }
+        .caption {
+            font-size: 0.98em;
+            color: #555;
+            margin-top: 8px;
+        }
+        ul {
+            margin-top: 0.5em;
+        }
+        .usecases {
+            background: #eaf3fa;
+            border-left: 4px solid #3a6ea5;
+            padding: 16px 24px;
+            border-radius: 6px;
+            margin: 24px 0;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Heroes of the Storm: XP Per Level Analysis</h1>
+        <p>
+            This analysis explores the experience (XP) progression in <strong>Heroes of the Storm</strong>, focusing on how XP requirements scale with each level, the impact of kill XP, and the role of passive XP gain. The visualization below summarizes key data points and trends, providing actionable insights for players and analysts.
+        </p>
+
+        <div class="visualization">
+            <img src="./assets/HotS_Charts/HotS_xp_per_Level.png" alt="HotS XP per Level Visualization" style="max-width:100%; border-radius:8px; box-shadow:0 1px 6px rgba(0,0,0,0.08);">
+            <div class="caption">
+                <em>Figure:</em> XP required per level, cumulative XP, and XP per kill, with passive XP gain considered. Data visualized for levels 1–21.
+            </div>
+        </div>
+
+        <h2>Key Insights</h2>
+        <ul>
+            <li><strong>Non-linear XP Growth:</strong> The XP required to reach each new level increases non-linearly, making higher levels progressively more challenging to attain.</li>
+            <li><strong>XP Spikes:</strong> Certain levels require significantly more XP, representing key power spikes and strategic milestones in gameplay.</li>
+            <li><strong>Kill vs. Passive XP:</strong> The analysis compares XP gained from kills to passive XP income, highlighting the importance of both aggressive and steady playstyles.</li>
+        </ul>
+
+        <div class="usecases">
+            <h2>Use Cases</h2>
+            <ul>
+                <li><strong>Player Strategy:</strong> Optimize timing for aggressive plays or objectives by understanding when major XP spikes occur.</li>
+                <li><strong>Team Coordination:</strong> Align talent upgrades and power spikes with XP milestones for better team performance.</li>
+                <li><strong>Game Balance:</strong> Identify potential balance issues or improvement areas by analyzing irregularities in XP progression.</li>
+                <li><strong>Educational Content:</strong> Use the data and charts to teach new or competitive players about XP mechanics and leveling strategies.</li>
+            </ul>
+        </div>
+
+        <h2>Conclusion</h2>
+        <p>
+            By visualizing and analyzing XP progression, this page provides valuable insights for both players and developers. Understanding the XP curve enables more informed decisions, strategic gameplay, and contributes to a balanced competitive environment.
+        </p>
+    </div>
+</body>
+</html>

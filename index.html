@@ -2,90 +2,414 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Heroes of the Storm XP Analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heroes of the Storm - Strategic Analysis</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f8f9fa;
-            color: #222;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            padding: 32px 40px 40px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
         }
-        h1 {
-            color: #2b4a6f;
-            margin-top: 0;
-        }
-        h2 {
-            color: #3a6ea5;
-            margin-bottom: 0.5em;
-        }
-        .visualization {
+
+        header {
             text-align: center;
-            margin: 32px 0;
+            padding: 40px 0;
+            border-bottom: 3px solid #2c5aa0;
+            margin-bottom: 40px;
         }
-        .caption {
-            font-size: 0.98em;
-            color: #555;
-            margin-top: 8px;
+
+        h1 {
+            color: #2c5aa0;
+            font-size: 2.5em;
+            margin-bottom: 10px;
         }
+
+        h2 {
+            color: #2c5aa0;
+            font-size: 1.8em;
+            margin: 30px 0 15px 0;
+            border-left: 4px solid #2c5aa0;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #1a365d;
+            font-size: 1.3em;
+            margin: 25px 0 10px 0;
+        }
+
+        h4 {
+            color: #2d3748;
+            font-size: 1.1em;
+            margin: 20px 0 10px 0;
+        }
+
+        .achievements {
+            background-color: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .achievements h4 {
+            color: #2c5aa0;
+            margin-bottom: 15px;
+        }
+
+        .purpose {
+            background-color: #edf2f7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .purpose h4 {
+            color: #2c5aa0;
+            margin-bottom: 15px;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .note strong {
+            color: #856404;
+        }
+
         ul {
-            margin-top: 0.5em;
+            margin: 15px 0;
+            padding-left: 30px;
         }
-        .usecases {
-            background: #eaf3fa;
-            border-left: 4px solid #3a6ea5;
-            padding: 16px 24px;
-            border-radius: 6px;
-            margin: 24px 0;
+
+        li {
+            margin: 8px 0;
         }
-        @media (max-width: 600px) {
-            .container { padding: 12px; }
+
+        .chart-section {
+            margin: 30px 0;
+        }
+
+        .hp-analysis-container {
+            display: flex;
+            gap: 30px;
+            align-items: stretch;
+            margin: 20px 0;
+        }
+
+        .chart-container {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .insights-container {
+            flex: 1;
+            min-width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .xp-chart {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .insights-category {
+            margin: 20px 0;
+        }
+
+        .insights-category h4 {
+            background-color: #2c5aa0;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .hero-insight {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-left: 3px solid #2c5aa0;
+        }
+
+        .hero-insight strong {
+            color: #2c5aa0;
+        }
+
+        .analysis-points {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .analysis-points li {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            border-left: 3px solid #2c5aa0;
+        }
+
+        .analysis-points strong {
+            color: #2c5aa0;
+        }
+
+        .future-analysis {
+            background-color: #e6f3ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .additional-analysis {
+            background-color: #f0f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .additional-analysis ul {
+            columns: 2;
+            column-gap: 30px;
+        }
+
+        .link-button {
+            display: inline-block;
+            background-color: #2c5aa0;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+
+        .link-button:hover {
+            background-color: #1e3a8a;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .hp-analysis-container {
+                flex-direction: column;
+            }
+            
+            .additional-analysis ul {
+                columns: 1;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Heroes of the Storm: XP Per Level Analysis</h1>
-        <p>
-            This analysis explores the experience (XP) progression in <strong>Heroes of the Storm</strong>, focusing on how XP requirements scale with each level, the impact of kill XP, and the role of passive XP gain. The visualization below summarizes key data points and trends, providing actionable insights for players and analysts.
-        </p>
+        <header>
+            <h1>Heroes of the Storm</h1>
+            <p style="font-size: 1.2em; color: #666;">Strategic Analysis</p>
+        </header>
 
-        <div class="visualization">
-            <img src="./assets/HotS_Charts/HotS_xp_per_Level.png" alt="HotS XP per Level Visualization" style="max-width:100%; border-radius:8px; box-shadow:0 1px 6px rgba(0,0,0,0.08);">
-            <div class="caption">
-                <em>Figure:</em> XP required per level, cumulative XP, and XP per kill, with passive XP gain considered. Data visualized for levels 1–21.
+        <section>
+            <h2>My Background</h2>
+            <p>I'm Michael Salata, a former competitive Heroes of the Storm player specializing in tank roles, macro strategy and shot-calling.</p>
+            
+            <div class="achievements">
+                <h4>Competitive Achievements:</h4>
+                <ul>
+                    <li>Led a team to victory in multiple weekly ESL Heroes of the Storm tournaments, earning prize money</li>
+                    <li>Shot-called for hundreds of competitive matches</li>
+                    <li>Coached an amateur team that subsequently achieved placements in their own competitive tournaments</li>
+                </ul>
             </div>
-        </div>
+        </section>
 
-        <h2>Key Insights</h2>
-        <ul>
-            <li><strong>Non-linear XP Growth:</strong> The XP required to reach each new level increases non-linearly, making higher levels progressively more challenging to attain.</li>
-            <li><strong>XP Spikes:</strong> Certain levels require significantly more XP, representing key power spikes and strategic milestones in gameplay.</li>
-            <li><strong>Kill vs. Passive XP:</strong> The analysis compares XP gained from kills to passive XP income, highlighting the importance of both aggressive and steady playstyles.</li>
-        </ul>
+        <section>
+            <h2>What This Is</h2>
+            <p>This document showcases a small selection of strategic analysis I developed for competitive Heroes of the Storm play. While my team and I typically worked with raw data and brief summaries, I've expanded these analyses with detailed explanations to make the strategic insights accessible to newer and non-competitive players.</p>
+            
+            <div class="purpose">
+                <h4>Purpose:</h4>
+                <ul>
+                    <li>Demonstrate analytical approaches that drive high-level decision-making</li>
+                    <li>Provide strategic intuitions that may not be apparent without extensive competitive experience</li>
+                    <li>Bridge the gap between raw data and actionable gameplay insights</li>
+                </ul>
+            </div>
+        </section>
 
-        <div class="usecases">
-            <h2>Use Cases</h2>
-            <ul>
-                <li><strong>Player Strategy:</strong> Optimize timing for aggressive plays or objectives by understanding when major XP spikes occur.</li>
-                <li><strong>Team Coordination:</strong> Align talent upgrades and power spikes with XP milestones for better team performance.</li>
-                <li><strong>Game Balance:</strong> Identify potential balance issues or improvement areas by analyzing irregularities in XP progression.</li>
-                <li><strong>Educational Content:</strong> Use the data and charts to teach new or competitive players about XP mechanics and leveling strategies.</li>
-            </ul>
-        </div>
+        <section>
+            <h2>XP per Level Analysis</h2>
+            
+            <h3>CONTEXT</h3>
+            <p>Levels 4, 7, 10, 13, 16, and 20 are talent tier levels and represent power spikes for both teams. The spike in experience (and time) required to reach key levels dictates the time duration before, during and after a talent advantage/disadvantage. Knowing when and where you biggest timing windows to take teamfight is critical to high level strategy in competitive play.</p>
+            
+            <div class="chart-section">
+                <h3>XP per Level - Chart Preview</h3>
+                <img src="assets/HotS_Charts/HotS_xp_per_Level.png" alt="XP per Level Chart" class="xp-chart">
+                <a href="https://docs.google.com/spreadsheets/d/1XsdmDGCv5CXcDPE0u7HsFiBPaS7XBHaMglIu3-iLZXQ" class="link-button" target="_blank">View Public Spreadsheet</a>
+            </div>
+            
+            <div class="analysis-points">
+                <h3>Insights and Use Cases</h3>
+                <ul>
+                    <li><strong>Levels 6-7:</strong> ~60% SPIKE in experience required to reach level 7. For teams behind in experience, this creates a prolonged window to fight on talent parity and mount a comeback before the enemy team hits level 7's substantial power spike. However, if an advantage is gained, this represents a prolonged advantage, as the losing team must still accumulate the 6-7 experience.</li>
+                    
+                    <li><strong>Levels 9-10:</strong> ~40% DROP in experience required to reach level 10. After the experience-advantaged team hits level 9, the window for the behind team to fight on talent parity (and ultimate parity) becomes very small.</li>
+                    
+                    <li><strong>Levels 16-17:</strong> ~30% SPIKE in experience required to reach level 17. With level 16 being the power spike and relatively easy to get, xp wise, there is no opportunity window for a disadvantaged team.</li>
+                    
+                    <li><strong>Kill XP vs Level:</strong> Kill experience remains relatively proportional to XP required—no strategic advantage gained here.</li>
+                    
+                    <li><strong>Kill XP at Level 20:</strong> Kill experience DOUBLES at level 20. Team fighting becomes extremely valuable late game. This is widely recognized.</li>
+                </ul>
+            </div>
+            
+            <div class="future-analysis">
+                <h3>Future Analysis Possibilities</h3>
+                <ul>
+                    <li>Highlight the ratio of passive experience gain vs minion experience vs kills</li>
+                    <li>Compare kill experience vs farming minion waves, factoring in death timers</li>
+                    <li>Analyze how many minion waves can be missed before fighting enemy teams becomes unprofitable in early game</li>
+                </ul>
+            </div>
+        </section>
 
-        <h2>Conclusion</h2>
-        <p>
-            By visualizing and analyzing XP progression, this page provides valuable insights for both players and developers. Understanding the XP curve enables more informed decisions, strategic gameplay, and contributes to a balanced competitive environment.
-        </p>
+        <section>
+            <h2>HP per Hero - Analysis</h2>
+            
+            <h3>CONTEXT</h3>
+            <p>Understanding each hero's HP level is critical for gameplay. Since most heroes function identically at 1% HP versus 100% HP, developing strong intuition for each hero's relative HP is essential for prioritizing targets to efficiently defeat enemy teams.</p>
+            
+            <div class="note">
+                <strong>NOTE:</strong> Since numerical values fluctuate with hero levels throughout each game, understanding a hero's RELATIVE HP is the key insight. For this reason, specific numerical values have been omitted from this visualization.
+            </div>
+            
+            <p>For this HP analysis, I'll examine notable entries in the chart. While HP affects dueling ability, it primarily determines a hero's ability to survive combined burst damage from an enemy team. This analysis focuses primarily on that aspect. I will not comment on survivability gained through technical abilities like invisibility, teleports, dashes, etc.</p>
+            
+            <h3>Hero HP per Hero - Bar Chart</h3>
+            <div class="hp-analysis-container">
+                <div class="chart-container">
+                    <img src="assets/HotS_Charts/HP_per_Hero.png" alt="Hero HP per Hero Bar Chart">
+                    <a href="https://docs.google.com/spreadsheets/d/1Lj6p__CxRtoO6-UZv3RW_0QxE5hp_4aI0R_0ZYYvBzU/edit?usp=sharing" class="link-button" target="_blank">View Public Spreadsheet</a>
+                </div>
+                
+                <div class="insights-container">
+                    <h3>Insights: Unexpected Hero HP Levels</h3>
+                    
+                    <div class="insights-category">
+                        <h4>VERY DURABLE</h4>
+                        <div class="hero-insight">
+                            <strong>Cho:</strong> Durable Late Game - His HP scales more than other heroes, making him significantly (~20-50%) more durable late game. His high HP makes him a very high risk-reward target.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>Stitches:</strong> His HP-boosting talents combined with his massive HP pool and low damage output means he's almost never worth prioritizing.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>Azmodan:</strong> Abnormally large HP pool for a mage. Combined with his laser ability, his 1v1 strength often catches new players off guard.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>Dehaka:</strong> Unexpectedly durable. Beyond his high HP pool, he has multiple HP-boosting and defensive cooldowns.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>Varian:</strong> His HP increases significantly when taking the TANK talent at level 7, putting him closer to Muradin's HP range.
+                        </div>
+                    </div>
+
+                    <div class="insights-category">
+                        <h4>ABOVE AVERAGE DURABILITY</h4>
+                        <div class="hero-insight">
+                            <strong>Uther:</strong> He actually WANTS to die. His passive ability to heal quickly after death significantly reduces his target priority.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>Rehgar:</strong> While he appears durable with solid HP pool, his limited self-healing makes him a viable target. Success depends on whether you can burst him completely or disable his ultimate.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>D.Va:</strong> Almost never worth prioritizing. Since she loses all mech HP when triggering her bomb, damage dealt before triggering this ability is nearly meaningless.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>Garrosh:</strong> Unusually small HP pool for a tank. His passive ability to gain armor when near death compensates for this.
+                        </div>
+                    </div>
+
+                    <div class="insights-category">
+                        <h4>AVERAGE-LOW DURABILITY</h4>
+                        <div class="hero-insight">
+                            <strong>Kerrigan:</strong> Her AoE abilities generate shields/temporary health, making her deceptively durable depending on her damage output.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>Cassia:</strong> Gains physical armor while moving, making her deceptively durable against auto-attacks.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>Illidan:</strong> Like Kerrigan, his damage output provides self-healing, making him deceptively durable based on damage dealt.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>Nazeebo:</strong> Very durable late game - Key passives in his kit make him extremely difficult to burst after levels 13 & 16.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>Lucio:</strong> Similar to Rehgar, his limited self-healing makes him a priority target, but success depends on complete burst potential or disabling his ultimate.
+                        </div>
+                        <div class="hero-insight">
+                            <strong>Lunara:</strong> Has a key passive at level 13 that significantly mitigates burst spell damage.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Analysis I've Conducted but not Included</h2>
+            <div class="additional-analysis">
+                <ul>
+                    <li>Hero dueling strength</li>
+                    <li>Hero win rates per map</li>
+                    <li>Hero win rates vs other heroes</li>
+                    <li>Hero pick rates for specific enemy team compositions</li>
+                    <li>Hero DPS with abilities factored in</li>
+                    <li>Initiation range visualization</li>
+                    <li>And more...</li>
+                </ul>
+            </div>
+        </section>
     </div>
 </body>
 </html>

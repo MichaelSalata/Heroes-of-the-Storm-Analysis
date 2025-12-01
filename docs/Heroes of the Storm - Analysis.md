@@ -4,18 +4,18 @@
 
 I'm Michael Salata, a former competitive Heroes of the Storm player specializing in tank roles, macro strategy and shot-calling.
 
-**Competitive Achievements:**
+**Professional Achievements:**
 - Led a team to victory in multiple weekly ESL Heroes of the Storm tournaments, earning prize money
-- Shot-called for hundreds of competitive matches
-- Coached an amateur team that subsequently achieved placements in their own competitive tournaments
+- Shot-called for hundreds of professional matches
+- Coached an amateur team that went on to place well in their own competitive division
 
 ## What This Is
-This document showcases a small selection of strategic analysis I developed for competitive Heroes of the Storm play. While my team and I typically worked with raw data and brief summaries, I've expanded these analyses with detailed explanations to make the strategic insights accessible to newer and non-competitive players.
+This document showcases a small selection of the analysis I developed for professional Heroes of the Storm play. While my team and I typically worked with closely raw data and brief summaries, I've published this analysis with detailed explanations to make the information accessible to newer and non-competitive players.
 
 **Purpose:**
-- Demonstrate analytical approaches that drive high-level decision-making
-- Provide strategic intuitions that may not be apparent without extensive competitive experience
-- Bridge the gap between raw data and actionable gameplay insights
+- Demonstrate the analytical approach that drives high-level decision-making
+- Provide strategies that may not be apparent without extensive competitive experience
+- Bridge the gap between raw data and actionable understanding
 
 ## XP per Level Analysis
 ### CONTEXT

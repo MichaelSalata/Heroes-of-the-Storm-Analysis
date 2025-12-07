@@ -2,7 +2,7 @@
 
 ## My Background
 
-I'm Michael Salata, a former competitive Heroes of the Storm player specializing in tank roles, macro strategy and shot-calling.
+I'm Michael Salata, a former professional Heroes of the Storm player and coach specializing in tank roles, macro strategy and shot-calling.
 
 **Professional Achievements:**
 - Led a team to victory in multiple weekly ESL Heroes of the Storm tournaments, earning prize money
